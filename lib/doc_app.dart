@@ -13,12 +13,11 @@ class DocDoc extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
-      builder: (context, child) => MaterialApp.router(),
       child: MaterialApp(
         title: 'DocDoc',
         theme: ThemeData(
-          primaryColor: ColorsManger.mainBlue,
-        ),
+            primaryColor: ColorsManager.mainBlue,
+            scaffoldBackgroundColor: ColorsManager.white),
         debugShowCheckedModeBanner: false,
         initialRoute: Routers.onboardingScreen,
         onGenerateRoute: appRouter.generateRoute,
