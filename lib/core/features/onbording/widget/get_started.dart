@@ -24,7 +24,7 @@ class GetStartedButton extends StatelessWidget {
           verticalSpace(10.h),
           TextButton(
               onPressed: () {
-                context.pushNamed(Routers.login);
+                context.pushNamed(Routers.loginScreen);
               },
               style: ButtonStyle(
                 backgroundColor:
