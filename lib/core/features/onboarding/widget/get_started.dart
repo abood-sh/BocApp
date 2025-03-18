@@ -1,4 +1,4 @@
-import 'package:doc/core/helpers/extenstion.dart';
+import 'package:doc/core/helpers/extension.dart';
 import 'package:doc/core/routing/routers.dart';
 import 'package:doc/core/theming/colors.dart';
 import 'package:doc/core/theming/styles.dart';
