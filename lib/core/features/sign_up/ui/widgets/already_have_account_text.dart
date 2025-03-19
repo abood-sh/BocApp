@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../theming/styles.dart';
 
+
+
 class AlreadyHaveAccountText extends StatelessWidget {
   const AlreadyHaveAccountText({super.key});
 
@@ -15,16 +17,17 @@ class AlreadyHaveAccountText extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: 'Don\'t have an account?',
+            text: 'Already have an account?',
             style: TextStyles.font13DarkBlueRegular,
           ),
           TextSpan(
-              text: ' Sign Up',
-              style: TextStyles.font13BlueSemiBold,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  context.pushReplacementNamed(Routers.signupScreen);
-                }),
+            text: ' Login',
+            style: TextStyles.font13BlueSemiBold,
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                context.pushReplacementNamed(Routers.loginScreen);
+              },
+          ),
         ],
       ),
     );
