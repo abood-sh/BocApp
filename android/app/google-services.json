@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "321253441126",
+    "project_id": "doc-doc-54eec",
+    "storage_bucket": "doc-doc-54eec.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321253441126:android:3dd31da1dae243cd1337a7",
+        "android_client_info": {
+          "package_name": "com.example.doc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwjcXbHcX_ihCpF1epcmowM9J9W7AdB1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
