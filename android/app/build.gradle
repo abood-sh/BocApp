@@ -1,5 +1,8 @@
 plugins {
     id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
 }
@@ -45,7 +48,7 @@ android {
         applicationId "com.example.doc"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -58,10 +61,41 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-}
 
+    flavorDimensions += "default"
+    productFlavors {
+        create("production") {
+            dimension = "default"
+            resValue(
+                "string",
+                "app_name",
+                "Doc Production")
+        }
+        create("development") {
+            dimension = "default"
+            resValue(
+                "string",
+                "app_name",
+                "Doc Development")
+
+        }
+    }
+
+    
+}
+configurations.all {
+    resolutionStrategy {
+        force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+        force "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+        force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    }
+}
 flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+  implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22")) // Add BOM to align versions
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+}
