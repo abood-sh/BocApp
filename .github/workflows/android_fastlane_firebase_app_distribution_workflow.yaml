@@ -6,22 +6,32 @@ on:
       - master
 
 jobs:
-  distribute_to_firebase: #optional name
-    runs-on: ubuntu-latest #android use ubuntu-latest
+  distribute_to_firebase:
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout my repo code  
       uses: actions/checkout@v2
     
-    - name: Set up JDK 11
+    - name: Set up JDK 8
       uses: actions/setup-java@v2
       with:
-        java-version: '11'
+        java-version: '8'
         distribution: 'temurin'
+    
+    - name: Verify Java version
+      run: java-version
     
     - name: Install Flutter
       uses: subosito/flutter-action@v2
       with:
-        version: '3.19.2'        #channel: 'beta' # or 'dev'/'master'
+        version: "3.19.2"
+        flutter-version: "3.19.2"
+
+    - name: Flutter doctor
+      run: flutter doctor -v
+    
+    - name: Install dependencies
+      run: flutter pub get
 
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
@@ -32,8 +42,8 @@ jobs:
         
     - name: Build and Distribute App
       env:
-        FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
-      run: |  # same command fastlane android firebase_distribution
+        FIREBASE_CLI_TOKEN: ${{ secrets.FIERBASR_CLI_TOKEN }}
+      run: |  
         bundle exec fastlane android firebase_distribution 
       working-directory: android
 
