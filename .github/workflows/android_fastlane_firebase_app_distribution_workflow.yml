@@ -31,6 +31,20 @@ jobs:
         working-directory: android
       env:
         BUNDLE_DEPLOYMENT: "false"
+    - name: Make sure directory is writable
+      run: chmod -R +w .
+      working-directory: android
+    - name: Install Bundler
+      run: gem install bundler
+      working-directory: android
+    - name: Add current platform to lockfile
+      run: |
+        current_platform=$(bundle platform | grep "Your platform is:" | cut -d':' -f2 | tr -d ' ')
+        bundle lock --add-platform "$current_platform"
+      working-directory: android
+    - name: Install dependencies
+      run: bundle install
+      working-directory: android
 
         
     - name: Build and Distribute App
