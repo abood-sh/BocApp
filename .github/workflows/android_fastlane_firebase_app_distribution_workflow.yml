@@ -24,7 +24,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: "3.3.7"
-        bundler-cache: false
+        bundler-cache: true
         working-directory: android
       env:
         BUNDLE_DEPLOYMENT: "false"
