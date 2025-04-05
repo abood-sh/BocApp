@@ -6,21 +6,9 @@ platform :android do
   desc "Lan for Android Firebase App Distribution"
   lane :firebase_distribution do
     # Run shell commands separately
-    flutter(
-      command: "clean",
-      project_dir: ".."
-    )
-    flutter(
-      command: "pub get",
-      project_dir: ".."
-    )
-    flutter(
-      command: "build apk",
-      flavor: "production",
-      target: "lib/main_production.dart",
-      project_dir: "..",
-      args: "--no-tree-shake-icons --android-skip-build-dependency-validation"
-    )
+    sh "flutter clean"
+    sh "flutter pub get"
+    sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
     # Firebase App Distribution configuration
     firebase_app_distribution(
       app: "1:321253441126:android:3dd31da1dae243cd1337a7",
@@ -28,7 +16,7 @@ platform :android do
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       testers: "aboodshban@gmail.com",
-      release_notes: "Automated CI build"
+      release_notes: "This is a new release"
     )
   end
 end
