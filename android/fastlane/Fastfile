@@ -8,7 +8,7 @@ platform :android do
     # Run shell commands separately
     sh "flutter clean"
     sh "flutter pub get"
-    sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons --android-skip-build-dependency-validation"
+    sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons --build-arg=\"-Pandroid.enableDependencyValidation=false\""
     # Firebase App Distribution configuration
     firebase_app_distribution(
       app: "1:321253441126:android:3dd31da1dae243cd1337a7",
