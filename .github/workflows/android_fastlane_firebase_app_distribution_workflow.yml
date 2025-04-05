@@ -2,7 +2,8 @@ name: Android Fastlane with Firebase App Distribution
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
 
 jobs:
   distribute_to_firebase:
