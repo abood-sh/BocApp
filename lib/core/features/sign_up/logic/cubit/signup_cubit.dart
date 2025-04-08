@@ -1,5 +1,3 @@
-import 'package:doc/core/features/login/data/models/login_req_body.dart';
-import 'package:doc/core/features/login/logic/cubit/login_state.dart';
 import 'package:doc/core/features/sign_up/data/model/signup_req_body.dart';
 import 'package:doc/core/features/sign_up/data/repo/sign_up_repo.dart';
 import 'package:doc/core/features/sign_up/logic/cubit/signup_state.dart';

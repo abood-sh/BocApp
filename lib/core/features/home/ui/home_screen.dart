@@ -1,7 +1,9 @@
-import 'package:doc/core/helpers/extension.dart';
+import 'package:doc/core/features/home/ui/widget/home_top_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../routing/routers.dart';
+import '../../../helpers/spacing.dart';
+import 'widget/doctors_blue_container.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,17 +11,19 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            context.pushNamedAndRemoveUntil(Routers.loginScreen);
-          },
-          child: const Text('Logout'),
+      body: SafeArea(
+          child: Container(
+        width: double.infinity,
+        margin: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 28.h),
+        // color: Colors.yellow.shade300,
+        child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HomeTopBar(),
+            DoctorsBlueContainer(),
+          ],
         ),
-      ),
+      )),
     );
   }
 }
