@@ -19,7 +19,7 @@ class DocDoc extends StatelessWidget {
             primaryColor: ColorsManager.mainBlue,
             scaffoldBackgroundColor: ColorsManager.white),
         debugShowCheckedModeBanner: false,
-        initialRoute: Routers.onboardingScreen,
+        initialRoute: Routers.homeScreen,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );
