@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:doc/core/features/login/data/models/login_req_body.dart';
-import 'package:doc/core/features/sign_up/data/model/signup_req_body.dart';
-import 'package:doc/core/features/sign_up/data/model/signup_res.dart';
+import 'package:doc/features/login/data/models/login_req_body.dart';
+import 'package:doc/features/sign_up/data/model/signup_req_body.dart';
+import 'package:doc/features/sign_up/data/model/signup_res.dart';
 import 'package:doc/core/networking/api_constanta.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../features/login/data/models/login_res_body.dart';
+import '../../features/login/data/models/login_res_body.dart';
 
 part 'api_service.g.dart';
 
