@@ -1,18 +1,19 @@
-import 'package:doc/core/helpers/spacing.dart';
-import 'package:doc/core/theming/colors.dart';
+import 'package:doc_app/core/helpers/spacing.dart';
+import 'package:doc_app/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theming/styles.dart';
 
 class PasswordValidation extends StatelessWidget {
-  const PasswordValidation(
-      {super.key,
-      required this.hasUpperCase,
-      required this.hasLowerCase,
-      required this.hasNumbers,
-      required this.hasSpecialCharacters,
-      required this.hasMinLength});
+  const PasswordValidation({
+    super.key,
+    required this.hasUpperCase,
+    required this.hasLowerCase,
+    required this.hasNumbers,
+    required this.hasSpecialCharacters,
+    required this.hasMinLength,
+  });
   final bool hasUpperCase;
   final bool hasLowerCase;
   final bool hasNumbers;
@@ -38,10 +39,7 @@ class PasswordValidation extends StatelessWidget {
   Widget buildValidationRow(String text, bool hasValidate) {
     return Row(
       children: [
-        CircleAvatar(
-          radius: 2.5.r,
-          backgroundColor: ColorsManager.gray,
-        ),
+        CircleAvatar(radius: 2.5.r, backgroundColor: ColorsManager.gray),
         horizontalSpace(6),
         Text(
           text,

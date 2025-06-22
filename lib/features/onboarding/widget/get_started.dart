@@ -1,7 +1,7 @@
-import 'package:doc/core/helpers/extension.dart';
-import 'package:doc/core/routing/routers.dart';
-import 'package:doc/core/theming/colors.dart';
-import 'package:doc/core/theming/styles.dart';
+import 'package:doc_app/core/helpers/extension.dart';
+import 'package:doc_app/core/routing/routers.dart';
+import 'package:doc_app/core/theming/colors.dart';
+import 'package:doc_app/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,26 +23,23 @@ class GetStartedButton extends StatelessWidget {
           ),
           verticalSpace(10.h),
           TextButton(
-              onPressed: () {
-                context.pushNamed(Routers.loginScreen);
-              },
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(ColorsManager.mainBlue),
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                minimumSize: MaterialStateProperty.all(
-                  const Size(double.infinity, 52),
-                ),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
+            onPressed: () {
+              context.pushNamed(Routers.loginScreen);
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(
+                ColorsManager.mainBlue,
               ),
-              child: Text(
-                "Get Started",
-                style: TextStyles.font16WhiteMedium,
-              )),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              minimumSize: MaterialStateProperty.all(
+                const Size(double.infinity, 52),
+              ),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              ),
+            ),
+            child: Text("Get Started", style: TextStyles.font16WhiteMedium),
+          ),
         ],
       ),
     );

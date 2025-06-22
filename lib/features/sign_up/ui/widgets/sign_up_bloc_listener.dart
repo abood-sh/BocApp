@@ -1,8 +1,8 @@
-import 'package:doc/features/sign_up/logic/cubit/signup_cubit.dart';
-import 'package:doc/features/sign_up/logic/cubit/signup_state.dart';
-import 'package:doc/core/helpers/extension.dart';
-import 'package:doc/core/routing/routers.dart';
-import 'package:doc/core/theming/styles.dart';
+import 'package:doc_app/features/sign_up/logic/cubit/signup_cubit.dart';
+import 'package:doc_app/features/sign_up/logic/cubit/signup_state.dart';
+import 'package:doc_app/core/helpers/extension.dart';
+import 'package:doc_app/core/routing/routers.dart';
+import 'package:doc_app/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,9 +24,7 @@ class SignupBlocListener extends StatelessWidget {
             showDialog(
               context: context,
               builder: (context) => const Center(
-                child: CircularProgressIndicator(
-                  color: ColorsManager.mainBlue,
-                ),
+                child: CircularProgressIndicator(color: ColorsManager.mainBlue),
               ),
             );
           },
@@ -79,24 +77,14 @@ class SignupBlocListener extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        icon: const Icon(
-          Icons.error,
-          color: Colors.red,
-          size: 32,
-        ),
-        content: Text(
-          error,
-          style: TextStyles.font15DarkBlueMedium,
-        ),
+        icon: const Icon(Icons.error, color: Colors.red, size: 32),
+        content: Text(error, style: TextStyles.font15DarkBlueMedium),
         actions: [
           TextButton(
             onPressed: () {
               context.pop();
             },
-            child: Text(
-              'Got it',
-              style: TextStyles.font14BlueSemiBold,
-            ),
+            child: Text('Got it', style: TextStyles.font14BlueSemiBold),
           ),
         ],
       ),

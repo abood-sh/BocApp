@@ -1,4 +1,4 @@
-import 'package:doc/core/helpers/spacing.dart';
+import 'package:doc_app/core/helpers/spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -12,12 +12,12 @@ class DoctorsBlueContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 220.h,
+      height: 197.h,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           Container(
-            height: 190.h,
+            height: 167.h,
             width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
             decoration: BoxDecoration(
@@ -59,7 +59,7 @@ class DoctorsBlueContainer extends StatelessWidget {
             top: 0,
             child: Image.asset(
               'assets/images/doctor_home_container_blue.png',
-              height: 220.h,
+              height: 197.h,
               fit: BoxFit.cover,
             ),
           ),

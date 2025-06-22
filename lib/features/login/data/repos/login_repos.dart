@@ -1,6 +1,6 @@
-import 'package:doc/features/login/data/models/login_req_body.dart';
-import 'package:doc/core/networking/api_result.dart';
-import 'package:doc/core/networking/api_service.dart';
+import 'package:doc_app/features/login/data/models/login_req_body.dart';
+import 'package:doc_app/core/networking/api_result.dart';
+import 'package:doc_app/core/networking/api_service.dart';
 
 import '../../../../core/networking/api_error_handler.dart';
 import '../models/login_res_body.dart';
