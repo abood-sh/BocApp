@@ -1,6 +1,6 @@
-import 'package:doc/features/login/logic/cubit/login_cubit.dart';
-import 'package:doc/features/login/logic/cubit/login_state.dart';
-import 'package:doc/core/helpers/extension.dart';
+import 'package:doc_app/features/login/logic/cubit/login_cubit.dart';
+import 'package:doc_app/features/login/logic/cubit/login_state.dart';
+import 'package:doc_app/core/helpers/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,9 +19,10 @@ class LoginBlocListener extends StatelessWidget {
         state.whenOrNull(
           loading: () {
             showDialog(
-                context: context,
-                builder: (context) =>
-                    const Center(child: CircularProgressIndicator()));
+              context: context,
+              builder: (context) =>
+                  const Center(child: CircularProgressIndicator()),
+            );
           },
           success: (loginResponse) {
             context.pop();
@@ -41,24 +42,14 @@ class LoginBlocListener extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        icon: const Icon(
-          Icons.error,
-          color: Colors.red,
-          size: 32,
-        ),
-        content: Text(
-          error,
-          style: TextStyles.font15DarkBlueMedium,
-        ),
+        icon: const Icon(Icons.error, color: Colors.red, size: 32),
+        content: Text(error, style: TextStyles.font15DarkBlueMedium),
         actions: [
           TextButton(
             onPressed: () {
               context.pop();
             },
-            child: Text(
-              'Got it',
-              style: TextStyles.font14BlueSemiBold,
-            ),
+            child: Text('Got it', style: TextStyles.font14BlueSemiBold),
           ),
         ],
       ),

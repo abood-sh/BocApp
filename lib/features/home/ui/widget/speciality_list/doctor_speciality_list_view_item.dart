@@ -1,17 +1,20 @@
-import 'package:doc/core/helpers/spacing.dart';
-import 'package:doc/core/theming/colors.dart';
-import 'package:doc/features/home/data/model/specializations_response_model.dart';
+import 'package:doc_app/core/helpers/spacing.dart';
+import 'package:doc_app/core/theming/colors.dart';
+import 'package:doc_app/features/home/data/model/specializations_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/theming/styles.dart';
+import '../../../../../core/theming/styles.dart';
 
 class DoctorSpecialityListViewItem extends StatelessWidget {
   final SpecializationsData? specializationsData;
   final int itemIndex;
-  const DoctorSpecialityListViewItem(
-      {super.key, this.specializationsData, required this.itemIndex});
+  const DoctorSpecialityListViewItem({
+    super.key,
+    this.specializationsData,
+    required this.itemIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +32,10 @@ class DoctorSpecialityListViewItem extends StatelessWidget {
             ),
           ),
           verticalSpace(8),
-          Text(specializationsData?.name ?? "Specializations",
-              style: TextStyles.font12DarkBlueRegular),
+          Text(
+            specializationsData?.name ?? "Specializations",
+            style: TextStyles.font12DarkBlueRegular,
+          ),
         ],
       ),
     );

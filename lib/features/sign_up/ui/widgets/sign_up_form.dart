@@ -1,4 +1,4 @@
-import 'package:doc/features/login/ui/widgets/password_validation.dart';
+import 'package:doc_app/features/login/ui/widgets/password_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,8 +38,9 @@ class _SignupFormState extends State<SignupForm> {
       setState(() {
         hasLowercase = AppRegex.hasLowerCase(passwordController.text);
         hasUppercase = AppRegex.hasUpperCase(passwordController.text);
-        hasSpecialCharacters =
-            AppRegex.hasSpecialCharacter(passwordController.text);
+        hasSpecialCharacters = AppRegex.hasSpecialCharacter(
+          passwordController.text,
+        );
         hasNumber = AppRegex.hasNumber(passwordController.text);
         hasMinLength = AppRegex.hasMinLength(passwordController.text);
       });
@@ -108,8 +109,9 @@ class _SignupFormState extends State<SignupForm> {
           ),
           verticalSpace(18),
           AppTextFormField(
-            controller:
-                context.read<SignupCubit>().passwordConfirmationController,
+            controller: context
+                .read<SignupCubit>()
+                .passwordConfirmationController,
             hintText: 'Password Confirmation',
             isObscureText: isPasswordConfirmationObscureText,
             suffixIcon: GestureDetector(

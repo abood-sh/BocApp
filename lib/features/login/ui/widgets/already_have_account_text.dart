@@ -1,5 +1,5 @@
-import 'package:doc/core/helpers/extension.dart';
-import 'package:doc/core/routing/routers.dart';
+import 'package:doc_app/core/helpers/extension.dart';
+import 'package:doc_app/core/routing/routers.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -19,12 +19,13 @@ class AlreadyHaveAccountText extends StatelessWidget {
             style: TextStyles.font13DarkBlueRegular,
           ),
           TextSpan(
-              text: ' Sign Up',
-              style: TextStyles.font13BlueSemiBold,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  context.pushReplacementNamed(Routers.signupScreen);
-                }),
+            text: ' Sign Up',
+            style: TextStyles.font13BlueSemiBold,
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                context.pushReplacementNamed(Routers.signupScreen);
+              },
+          ),
         ],
       ),
     );

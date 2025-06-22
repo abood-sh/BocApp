@@ -1,5 +1,5 @@
-import 'package:doc/core/helpers/extension.dart';
-import 'package:doc/core/routing/routers.dart';
+import 'package:doc_app/core/helpers/extension.dart';
+import 'package:doc_app/core/routing/routers.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 

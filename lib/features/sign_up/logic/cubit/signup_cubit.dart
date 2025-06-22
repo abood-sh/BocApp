@@ -1,6 +1,6 @@
-import 'package:doc/features/sign_up/data/model/signup_req_body.dart';
-import 'package:doc/features/sign_up/data/repo/sign_up_repo.dart';
-import 'package:doc/features/sign_up/logic/cubit/signup_state.dart';
+import 'package:doc_app/features/sign_up/data/model/signup_req_body.dart';
+import 'package:doc_app/features/sign_up/data/repo/sign_up_repo.dart';
+import 'package:doc_app/features/sign_up/logic/cubit/signup_state.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,10 +30,13 @@ class SignupCubit extends Cubit<SignupState> {
         gender: 0,
       ),
     );
-    response.when(success: (signupResponse) {
-      emit(SignupState.signupSuccess(signupResponse));
-    }, failure: (error) {
-      emit(SignupState.signupError(error: error.apiErrorModel.message ?? ''));
-    });
+    response.when(
+      success: (signupResponse) {
+        emit(SignupState.signupSuccess(signupResponse));
+      },
+      failure: (error) {
+        emit(SignupState.signupError(error: error.apiErrorModel.message ?? ''));
+      },
+    );
   }
 }

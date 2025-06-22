@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:doc/core/theming/styles.dart';
-import 'package:doc/features/home/data/model/specializations_response_model.dart';
+import 'package:doc_app/core/theming/styles.dart';
+import 'package:doc_app/features/home/data/model/specializations_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/theming/colors.dart';
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/theming/colors.dart';
 
 class DoctorsListViewItem extends StatelessWidget {
   final Doctors? doctorsMode;
@@ -23,7 +23,7 @@ class DoctorsListViewItem extends StatelessWidget {
             child: Image.network(
               width: 110.w,
               height: 120.h,
-              'https://static.wikia.nocookie.net/five-world-war/images/6/64/Hisoka.jpg/revision/latest?cb=20190313114050',
+              "https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg",
               fit: BoxFit.cover,
             ),
           ),

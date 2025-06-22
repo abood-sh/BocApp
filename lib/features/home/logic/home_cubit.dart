@@ -1,6 +1,6 @@
-import 'package:doc/features/home/data/model/specializations_response_model.dart';
-import 'package:doc/features/home/data/repos/home_repo.dart';
-import 'package:doc/features/home/logic/home_state.dart';
+import 'package:doc_app/features/home/data/model/specializations_response_model.dart';
+import 'package:doc_app/features/home/data/repos/home_repo.dart';
+import 'package:doc_app/features/home/logic/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeCubit extends Cubit<HomeState> {

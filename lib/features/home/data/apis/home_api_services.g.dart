@@ -24,12 +24,12 @@ class _HomeApiServices implements HomeApiServices {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<SpecializationsResponseModel> getSpecialization() async {
+  Future<List<SpecializationsData?>?> getSpecialization() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<SpecializationsResponseModel>(Options(
+    final _options = _setStreamType<List<SpecializationsData>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -45,10 +45,14 @@ class _HomeApiServices implements HomeApiServices {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SpecializationsResponseModel _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<SpecializationsData?>? _value;
     try {
-      _value = SpecializationsResponseModel.fromJson(_result.data!);
+      _value = _result.data
+          ?.map((dynamic i) => i == null
+              ? null
+              : SpecializationsData.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

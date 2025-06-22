@@ -1,4 +1,4 @@
-import 'package:doc/core/helpers/spacing.dart';
+import 'package:doc_app/core/helpers/spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

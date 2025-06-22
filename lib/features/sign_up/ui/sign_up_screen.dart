@@ -1,8 +1,8 @@
-import 'package:doc/features/sign_up/ui/widgets/sign_up_bloc_listener.dart';
-import 'package:doc/features/sign_up/ui/widgets/sign_up_form.dart';
-import 'package:doc/core/helpers/spacing.dart';
-import 'package:doc/core/theming/styles.dart';
-import 'package:doc/core/widget/app_text_button.dart';
+import 'package:doc_app/features/sign_up/ui/widgets/sign_up_bloc_listener.dart';
+import 'package:doc_app/features/sign_up/ui/widgets/sign_up_form.dart';
+import 'package:doc_app/core/helpers/spacing.dart';
+import 'package:doc_app/core/theming/styles.dart';
+import 'package:doc_app/core/widget/app_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,10 +24,7 @@ class SignupScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Create Account',
-                  style: TextStyles.font24BlueBold,
-                ),
+                Text('Create Account', style: TextStyles.font24BlueBold),
                 verticalSpace(8),
                 Text(
                   'Sign up now and start exploring all that our app has to offer. We\'re excited to welcome you to our community!',

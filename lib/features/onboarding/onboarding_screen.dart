@@ -1,7 +1,7 @@
-import 'package:doc/features/onboarding/widget/doc_logo_name.dart';
-import 'package:doc/features/onboarding/widget/doctor_image_and_text.dart';
-import 'package:doc/features/onboarding/widget/get_started.dart';
-import 'package:doc/core/helpers/spacing.dart';
+import 'package:doc_app/features/onboarding/widget/doc_logo_name.dart';
+import 'package:doc_app/features/onboarding/widget/doctor_image_and_text.dart';
+import 'package:doc_app/features/onboarding/widget/get_started.dart';
+import 'package:doc_app/core/helpers/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
