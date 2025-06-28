@@ -10,10 +10,12 @@ import '../../../../../core/theming/styles.dart';
 class DoctorSpecialityListViewItem extends StatelessWidget {
   final SpecializationsData? specializationsData;
   final int itemIndex;
+  final int selectedIndex;
   const DoctorSpecialityListViewItem({
     super.key,
     this.specializationsData,
     required this.itemIndex,
+    required this.selectedIndex,
   });
 
   @override
@@ -22,19 +24,67 @@ class DoctorSpecialityListViewItem extends StatelessWidget {
       padding: EdgeInsetsDirectional.only(start: itemIndex == 0 ? 0 : 24.w),
       child: Column(
         children: [
-          CircleAvatar(
-            radius: 28.r,
-            backgroundColor: ColorsManager.lightBlue,
-            child: SvgPicture.asset(
-              'assets/svgs/general_speciality.svg',
-              height: 48.h,
-              width: 48.w,
-            ),
-          ),
+          itemIndex == selectedIndex
+              ? Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      colors: [ColorsManager.darkBlue, ColorsManager.lightBlue],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: ColorsManager.darkBlue.withOpacity(0.3),
+                        blurRadius: 12,
+                        spreadRadius: 2,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  padding: EdgeInsets.all(4), // space for border
+                  child: CircleAvatar(
+                    radius: 30.r, // slightly larger
+                    backgroundColor: ColorsManager.lightBlue,
+                    child: SvgPicture.asset(
+                      'assets/svgs/general_speciality.svg',
+                      height: 44.h,
+                      width: 44.w,
+                    ),
+                  ),
+                )
+              // Container(
+              //   decoration: BoxDecoration(
+              //     border: Border.all(
+              //       color: ColorsManager.darkBlue
+              //     ),
+              //     shape: BoxShape.circle,
+              //   ),
+              //   child: CircleAvatar(
+              //   radius: 28.r,
+              //   backgroundColor: ColorsManager.lightBlue,
+              //   child: SvgPicture.asset(
+              //     'assets/svgs/general_speciality.svg',
+              //     height: 42.h,
+              //     width:  42.w,
+              //   ),
+              // ),
+              // )
+              : CircleAvatar(
+                  radius: 28.r,
+                  backgroundColor: ColorsManager.lightBlue,
+                  child: SvgPicture.asset(
+                    'assets/svgs/general_speciality.svg',
+                    height: 40.h,
+                    width: 40.w,
+                  ),
+                ),
           verticalSpace(8),
           Text(
             specializationsData?.name ?? "Specializations",
-            style: TextStyles.font12DarkBlueRegular,
+            style: itemIndex == selectedIndex
+                ? TextStyles.font14DarkBlueBold
+                : TextStyles.font12DarkBlueRegular,
           ),
         ],
       ),
