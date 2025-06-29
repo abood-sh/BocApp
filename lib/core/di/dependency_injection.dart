@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:doc_app/features/chat/data/repos/user_repo.dart';
 import 'package:doc_app/features/chat/logic/cubit/user_cubit.dart';

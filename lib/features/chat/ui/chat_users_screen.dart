@@ -1,12 +1,9 @@
-import 'package:doc_app/core/helpers/spacing.dart';
 import 'package:doc_app/core/theming/styles.dart';
 import 'package:doc_app/features/chat/logic/cubit/user_cubit.dart';
 import 'package:doc_app/features/chat/logic/cubit/user_state.dart';
 import 'package:doc_app/features/chat/ui/widget/user_list_view.dart';
-import 'package:doc_app/features/chat/ui/widget/user_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatUsersScreen extends StatefulWidget {
   const ChatUsersScreen({super.key});

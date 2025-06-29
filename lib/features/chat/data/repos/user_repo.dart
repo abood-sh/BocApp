@@ -1,7 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doc_app/core/helpers/constants.dart';
-import 'package:doc_app/core/helpers/shared_pref_helper.dart';
-import 'package:doc_app/features/chat/data/model/message_model.dart';
 import 'package:doc_app/features/chat/data/model/user_model.dart';
 
 class UserRepository {

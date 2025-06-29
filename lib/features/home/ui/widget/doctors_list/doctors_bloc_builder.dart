@@ -1,8 +1,6 @@
-import 'package:doc_app/core/helpers/spacing.dart';
 import 'package:doc_app/features/home/logic/home_cubit.dart';
 import 'package:doc_app/features/home/logic/home_state.dart';
 import 'package:doc_app/features/home/ui/widget/doctors_list/doctor_list_view.dart';
-import 'package:doc_app/features/home/ui/widget/speciality_list/doctor_specialty_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,19 +11,17 @@ class DoctorsBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       buildWhen: (previous, current) =>
-          current is SpecializationsLoading ||
-          current is SpecializationsSuccess ||
-          current is SpecializationsError,
+          current is DoctorsSuccess || current is DoctorsError,
       builder: (context, state) {
         return state.maybeWhen(
-          specializationsLoading: () {
-            return setupLoading();
-          },
-          specializationsSuccess: (specializationsResponseModel) {
+          // specializationsLoading: () {
+          //   return setupLoading();
+          // },
+          doctorsSuccess: (specializationsResponseModel) {
             var specializationsList = specializationsResponseModel;
             return setupSuccess(specializationsList);
           },
-          specializationsError: (errorHandler) {
+          doctorsError: (errorHandler) {
             return setupError();
           },
           orElse: () {
@@ -46,9 +42,7 @@ class DoctorsBlocBuilder extends StatelessWidget {
   Widget setupSuccess(specializationsList) {
     return Expanded(
       child: Column(
-        children: [
-          DoctorsListView(doctorsList: specializationsList?[0]?.doctorsList),
-        ],
+        children: [DoctorsListView(doctorsList: specializationsList)],
       ),
     );
   }

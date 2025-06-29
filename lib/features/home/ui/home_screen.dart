@@ -1,16 +1,11 @@
 import 'package:doc_app/core/helpers/spacing.dart';
-import 'package:doc_app/features/home/logic/home_cubit.dart';
-import 'package:doc_app/features/home/logic/home_state.dart';
 import 'package:doc_app/features/home/ui/widget/doctors_list/doctors_bloc_builder.dart';
 import 'package:doc_app/features/home/ui/widget/home_top_bar.dart';
-import 'package:doc_app/features/home/ui/widget/specializations_bloc_builder.dart';
+import 'package:doc_app/features/home/ui/widget/speciality_list/specializations_bloc_builder.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'widget/doctors_list/doctor_list_view.dart';
 import 'widget/speciality_list/doctor_speciality_see_all.dart';
-import 'widget/speciality_list/doctor_specialty_listview.dart';
 import 'widget/doctors_blue_container.dart';
 
 class HomeScreen extends StatelessWidget {
