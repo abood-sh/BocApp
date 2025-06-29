@@ -1,17 +1,13 @@
 import 'package:doc_app/core/helpers/spacing.dart';
-import 'package:doc_app/core/theming/colors.dart';
 import 'package:doc_app/core/theming/styles.dart';
 import 'package:doc_app/features/chat/data/model/message_model.dart';
 import 'package:doc_app/features/chat/data/model/user_model.dart';
 import 'package:doc_app/features/chat/data/repos/message_repo.dart';
 import 'package:doc_app/features/chat/logic/cubit/chat_cubit.dart';
 import 'package:doc_app/features/chat/logic/cubit/chat_state.dart';
-import 'package:doc_app/features/chat/ui/widget/chat_messag.dart';
 import 'package:doc_app/features/chat/ui/widget/chat_text_field.dart';
 import 'package:doc_app/features/chat/ui/widget/message_bubble.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

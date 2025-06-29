@@ -6,7 +6,7 @@ import 'package:doc_app/features/home/ui/widget/speciality_list/speciality_shimm
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/helpers/spacing.dart';
+import '../../../../../core/helpers/spacing.dart';
 
 class SpecializationsBlocBuilder extends StatelessWidget {
   const SpecializationsBlocBuilder({super.key});
@@ -42,9 +42,9 @@ class SpecializationsBlocBuilder extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
-          DoctorsShimmerLoading(),
-          verticalSpace(10),
           SpecialityShimmerLoading(),
+          verticalSpace(10),
+          DoctorsShimmerLoading(),
         ],
       ),
     );

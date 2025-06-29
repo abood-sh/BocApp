@@ -33,23 +33,15 @@ class DoctorSpecialityListViewItem extends StatelessWidget {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: ColorsManager.darkBlue.withOpacity(0.3),
-                        blurRadius: 12,
-                        spreadRadius: 2,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
                   ),
-                  padding: EdgeInsets.all(4), // space for border
+                  padding: EdgeInsets.all(3.5), // space for border
                   child: CircleAvatar(
-                    radius: 30.r, // slightly larger
+                    radius: 28.r, // slightly larger
                     backgroundColor: ColorsManager.lightBlue,
                     child: SvgPicture.asset(
                       'assets/svgs/general_speciality.svg',
-                      height: 44.h,
-                      width: 44.w,
+                      height: 42.h,
+                      width: 42.w,
                     ),
                   ),
                 )
@@ -79,11 +71,11 @@ class DoctorSpecialityListViewItem extends StatelessWidget {
                     width: 40.w,
                   ),
                 ),
-          verticalSpace(8),
+          verticalSpace(5),
           Text(
             specializationsData?.name ?? "Specializations",
             style: itemIndex == selectedIndex
-                ? TextStyles.font14DarkBlueBold
+                ? TextStyles.font14DarkBlueMedium
                 : TextStyles.font12DarkBlueRegular,
           ),
         ],

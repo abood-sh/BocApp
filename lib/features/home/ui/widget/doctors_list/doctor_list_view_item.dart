@@ -1,12 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:doc_app/core/theming/styles.dart';
 import 'package:doc_app/features/home/data/model/specializations_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/theming/colors.dart';
 
 class DoctorsListViewItem extends StatelessWidget {
   final Doctors? doctorsMode;
