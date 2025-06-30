@@ -1,3 +1,4 @@
+import 'package:doc_app/core/networking/api_error_model.dart';
 import 'package:doc_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doc_app/features/login/logic/cubit/login_state.dart';
 import 'package:doc_app/core/helpers/extension.dart';
@@ -28,8 +29,8 @@ class LoginBlocListener extends StatelessWidget {
             context.pop();
             context.pushNamed(Routers.homeScreen);
           },
-          error: (error) {
-            setUpErrorState(context, error);
+          error: (apiErrorModel) {
+            setUpErrorState(context, apiErrorModel);
           },
         );
       },
@@ -37,13 +38,16 @@ class LoginBlocListener extends StatelessWidget {
     );
   }
 
-  void setUpErrorState(BuildContext context, String error) {
+  void setUpErrorState(BuildContext context, ApiErrorModel apiErrorModel) {
     context.pop();
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         icon: const Icon(Icons.error, color: Colors.red, size: 32),
-        content: Text(error, style: TextStyles.font15DarkBlueMedium),
+        content: Text(
+          apiErrorModel.getAllErrorsMessage(),
+          style: TextStyles.font15DarkBlueMedium,
+        ),
         actions: [
           TextButton(
             onPressed: () {
