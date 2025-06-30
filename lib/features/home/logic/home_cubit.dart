@@ -1,5 +1,6 @@
 import 'package:doc_app/core/helpers/extension.dart';
 import 'package:doc_app/core/networking/api_error_handler.dart';
+import 'package:doc_app/core/networking/api_error_model.dart';
 import 'package:doc_app/features/home/data/model/specializations_response_model.dart';
 import 'package:doc_app/features/home/data/repos/home_repo.dart';
 import 'package:doc_app/features/home/logic/home_state.dart';
@@ -22,8 +23,8 @@ class HomeCubit extends Cubit<HomeState> {
         getDoctorList(specializationId: specializationsList?.first?.id);
         emit(HomeState.specializationsSuccess(specializationsList));
       },
-      failure: (errorHandler) {
-        emit(HomeState.specializationsError(errorHandler));
+      failure: (apiErrorModel) {
+        emit(HomeState.specializationsError(apiErrorModel));
       },
     );
   }
@@ -33,11 +34,7 @@ class HomeCubit extends Cubit<HomeState> {
     if (!doctorsList.isNullOrEmpty()) {
       emit(HomeState.doctorsSuccess(doctorsList));
     } else {
-      emit(
-        HomeState.doctorsError(
-          ErrorHandler.handle("no doctors found for this specialization"),
-        ),
-      );
+      emit(HomeState.doctorsError());
     }
   }
 

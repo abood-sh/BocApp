@@ -21,7 +21,7 @@ class DoctorsBlocBuilder extends StatelessWidget {
             var specializationsList = specializationsResponseModel;
             return setupSuccess(specializationsList);
           },
-          doctorsError: (errorHandler) {
+          doctorsError: () {
             return setupError();
           },
           orElse: () {
