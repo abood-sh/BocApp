@@ -12,8 +12,7 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Stripe.publishableKey =
-      "pk_test_51RRWNND7KPQ052f807yzxmIZBvWfF3e46OzpvigsqxanG0Uv9awAPEDN0AjZxE1Y3VkRkmR5T7p7dMXrAlE3jFzD00y2C6h5cJ";
+  Stripe.publishableKey = String.fromEnvironment('PUBLISHABLE_KEY');
   Stripe.merchantIdentifier = 'com.example.doc';
   await Stripe.instance.applySettings();
 
