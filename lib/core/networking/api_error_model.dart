@@ -2,12 +2,6 @@ import 'package:doc_app/core/helpers/extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'api_error_model.g.dart';
 
-// حسب شو بيرجعلي من جيسون
-/* {
-"message": "error",
-"code": 1
-}
-*/
 @JsonSerializable()
 class ApiErrorModel {
   final String? message;

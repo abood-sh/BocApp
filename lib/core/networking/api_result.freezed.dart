@@ -110,8 +110,8 @@ class __$$SuccessImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$SuccessImpl<T> implements Success<T> {
-  const _$SuccessImpl(this.data);
+class _$SuccessImpl<T> extends Success<T> {
+  const _$SuccessImpl(this.data) : super._();
 
   @override
   final T data;
@@ -204,8 +204,9 @@ class _$SuccessImpl<T> implements Success<T> {
   }
 }
 
-abstract class Success<T> implements ApiResult<T> {
+abstract class Success<T> extends ApiResult<T> {
   const factory Success(final T data) = _$SuccessImpl<T>;
+  const Success._() : super._();
 
   T get data;
 
@@ -253,8 +254,8 @@ class __$$FailureImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$FailureImpl<T> implements Failure<T> {
-  const _$FailureImpl(this.apiErrorModel);
+class _$FailureImpl<T> extends Failure<T> {
+  const _$FailureImpl(this.apiErrorModel) : super._();
 
   @override
   final ApiErrorModel apiErrorModel;
@@ -347,8 +348,9 @@ class _$FailureImpl<T> implements Failure<T> {
   }
 }
 
-abstract class Failure<T> implements ApiResult<T> {
+abstract class Failure<T> extends ApiResult<T> {
   const factory Failure(final ApiErrorModel apiErrorModel) = _$FailureImpl<T>;
+  const Failure._() : super._();
 
   ApiErrorModel get apiErrorModel;
 

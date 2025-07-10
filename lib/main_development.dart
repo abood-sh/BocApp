@@ -7,14 +7,21 @@ import 'package:doc_app/doc_app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey =
+      "pk_test_51RRWNND7KPQ052f807yzxmIZBvWfF3e46OzpvigsqxanG0Uv9awAPEDN0AjZxE1Y3VkRkmR5T7p7dMXrAlE3jFzD00y2C6h5cJ";
+  Stripe.merchantIdentifier = 'com.example.doc';
+  await Stripe.instance.applySettings();
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupGetIt();
   await ScreenUtil.ensureScreenSize();
   await checkIfLoggedInUser();
+
   runApp(DocDoc(appRouter: AppRouter()));
 }
 

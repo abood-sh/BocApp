@@ -6,6 +6,8 @@ import 'package:doc_app/features/onboarding/onboarding_screen.dart';
 import 'package:doc_app/features/sign_up/logic/cubit/signup_cubit.dart';
 import 'package:doc_app/features/sign_up/ui/sign_up_screen.dart';
 import 'package:doc_app/core/routing/routers.dart';
+import 'package:doc_app/features/stripe_pay/logic/cubit/stripe_cubit.dart';
+import 'package:doc_app/features/stripe_pay/stripe_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,6 +43,13 @@ class AppRouter {
             // same getIt<HomeCubit>() but not add   getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt()));
             // registerFactory create new instance when go to Home cubit every time ==  HomeCubit(getIt())
             child: const HomeScreen(),
+          ),
+        );
+      case Routers.stripeScreen:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => getIt<StripeCubit>(),
+            child: const StripeScreen(),
           ),
         );
       case Routers.chatScreen:
