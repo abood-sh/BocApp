@@ -95,7 +95,7 @@ class StripeScreen extends StatelessWidget {
                       : await context.read<StripeCubit>().createPaymentIntent(
                           100,
                           [],
-                          'cus_SeaNA2BTVhwYju',
+                          '',
                         );
                 },
               ),
