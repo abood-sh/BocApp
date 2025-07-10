@@ -25,8 +25,7 @@ class StripeDioFactory {
 
   static void addDioHeaders() async {
     dio?.options.headers = {
-      'Authorization':
-          'Bearer sk_test_51RRWNND7KPQ052f8dIdorsyJlPAPyWvKtQ0vP1zwycBCJnNgZpK0lrprk1uJ2nCisdC1nMwKfgCB87CEy687Watz00anYJaSzc',
+      'Authorization': '${String.fromEnvironment('PUBLISHABLE_KEY')}',
       'Content-Type': 'application/x-www-form-urlencoded',
     };
   }
