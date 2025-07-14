@@ -13,9 +13,8 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey = String.fromEnvironment('PUBLISHABLE_KEY');
-  Stripe.merchantIdentifier = 'com.example.doc';
+  Stripe.merchantIdentifier = 'pmd_1RkO6yD7KPQ052f8X9ochQb7';
   await Stripe.instance.applySettings();
-
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupGetIt();
   await ScreenUtil.ensureScreenSize();
