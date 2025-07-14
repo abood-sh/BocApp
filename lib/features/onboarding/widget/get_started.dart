@@ -17,7 +17,7 @@ class GetStartedButton extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.',
+            'Manage and schedule all of your medical appointments easily with Doc to get a new experience.',
             style: TextStyles.font13GrayRegular,
             textAlign: TextAlign.center,
           ),
@@ -27,14 +27,12 @@ class GetStartedButton extends StatelessWidget {
               context.pushNamed(Routers.loginScreen);
             },
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
-                ColorsManager.mainBlue,
-              ),
+              backgroundColor: WidgetStateProperty.all(ColorsManager.mainBlue),
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              minimumSize: MaterialStateProperty.all(
+              minimumSize: WidgetStateProperty.all(
                 const Size(double.infinity, 52),
               ),
-              shape: MaterialStateProperty.all(
+              shape: WidgetStateProperty.all(
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               ),
             ),

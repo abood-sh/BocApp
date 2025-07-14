@@ -21,8 +21,8 @@ class DocDoc extends StatelessWidget {
           scaffoldBackgroundColor: ColorsManager.white,
         ),
         debugShowCheckedModeBanner: false,
-        // initialRoute: Routers.chatScreen,
-        initialRoute: isLoggedInUser ? Routers.homeScreen : Routers.loginScreen,
+        initialRoute: Routers.stripeScreen,
+        //initialRoute: isLoggedInUser ? Routers.homeScreen : Routers.loginScreen,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );

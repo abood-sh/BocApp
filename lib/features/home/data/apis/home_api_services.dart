@@ -12,5 +12,5 @@ abstract class HomeApiServices {
   factory HomeApiServices(Dio dio, {String baseUrl}) = _HomeApiServices;
 
   @GET(HomeApiConstants.specializationEP)
-  Future<List<SpecializationsData?>?> getSpecialization();
+  Future<SpecializationsResponseModel> getSpecialization();
 }

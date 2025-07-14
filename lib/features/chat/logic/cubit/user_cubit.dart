@@ -4,9 +4,6 @@
 
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doc_app/core/networking/api_result.dart';
-import 'package:doc_app/features/chat/data/model/user_model.dart';
 import 'package:doc_app/features/chat/data/repos/user_repo.dart';
 import 'package:doc_app/features/chat/logic/cubit/user_state.dart';
 import 'package:flutter/material.dart';

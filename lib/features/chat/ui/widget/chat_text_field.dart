@@ -1,11 +1,4 @@
-import 'package:doc_app/core/helpers/app_regex.dart';
-import 'package:doc_app/core/helpers/spacing.dart';
-import 'package:doc_app/core/theming/colors.dart';
-import 'package:doc_app/core/widget/app_text_form_field.dart';
-import 'package:doc_app/features/chat/logic/cubit/user_cubit.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatTextField extends StatefulWidget {
   final String receiverID;
