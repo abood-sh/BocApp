@@ -1,9 +1,8 @@
 # doc_app
 
 A new Flutter project.
-
-## Getting Started
-
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/abood-sh/BocApp)
+## Getting Starte
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
