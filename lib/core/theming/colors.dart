@@ -12,4 +12,6 @@ class ColorsManager {
   static const Color moreLighterGray = Color(0xFFF5F5F5);
   static const Color red = Color(0xFFEF4444);
   static const Color green = Color(0xFF22C55E);
+  static const Color black = Color(0xff000000);
+  static const Color moreLightBlue = Color.fromARGB(255, 179, 207, 249);
 }

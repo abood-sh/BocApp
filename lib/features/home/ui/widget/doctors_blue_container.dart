@@ -1,4 +1,5 @@
 import 'package:doc_app/core/helpers/spacing.dart';
+import 'package:doc_app/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -30,22 +31,28 @@ class DoctorsBlueContainer extends StatelessWidget {
               children: [
                 Text(
                   '''Book and\nschedule with\n nearest doctor''',
-                  style: TextStyles.font18WhiteMedium,
+                  style: TextStyles.font18WhiteMedium(context),
                   textAlign: TextAlign.start,
                 ),
                 verticalSpace(10),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(48),
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(
+                        Theme.of(context).brightness == Brightness.dark
+                            ? ColorsManager.black
+                            : ColorsManager.white,
+                      ),
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(48),
+                        ),
                       ),
                     ),
                     child: Text(
                       'Find a doctor',
-                      style: TextStyles.font12BlueRegular,
+                      style: TextStyles.font12BlueRegular(context),
                     ),
                   ),
                 ),

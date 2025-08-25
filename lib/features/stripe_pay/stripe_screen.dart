@@ -72,7 +72,7 @@ class StripeScreen extends StatelessWidget {
             error: (error) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(error.message ?? 'Payment failed'),
+                  content: Text(error.error.message),
                   backgroundColor: ColorsManager.red, // Set your desired color
                   behavior: SnackBarBehavior.floating,
                 ),
@@ -88,14 +88,13 @@ class StripeScreen extends StatelessWidget {
               child: AppTextButton(
                 buttonWidth: 300,
                 buttonText: "Pay Now",
-                textStyle: TextStyles.font16WhiteMedium,
+                textStyle: TextStyles.font16WhiteMedium(context),
                 onPressed: () async {
                   state is Loading
                       ? null
                       : await context.read<StripeCubit>().createPaymentIntent(
                           100,
                           [],
-                          '',
                         );
                 },
               ),
@@ -124,8 +123,7 @@ class StripeScreen extends StatelessWidget {
                 ),
               );
             },
-            error: (error) =>
-                Center(child: Text(error.message ?? 'An error occurred')),
+            error: (error) => Center(child: Text(error.error.message)),
             orElse: () => const SizedBox.shrink(),
           );
         },

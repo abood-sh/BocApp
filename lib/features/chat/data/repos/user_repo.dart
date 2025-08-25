@@ -22,6 +22,7 @@ class UserRepository {
             return snapshot.docs.map((doc) => doc.data()).toList();
           })
           .handleError((e) {
+            
             throw FirebaseException(message: "Fetch error: $e", plugin: '');
           });
     } catch (e) {

@@ -1,4 +1,7 @@
+import 'package:doc_app/core/helpers/extension.dart';
 import 'package:doc_app/core/helpers/spacing.dart';
+import 'package:doc_app/core/routing/routers.dart';
+import 'package:doc_app/core/widget/app_drawer.dart';
 import 'package:doc_app/features/home/ui/widget/doctors_list/doctors_bloc_builder.dart';
 import 'package:doc_app/features/home/ui/widget/home_top_bar.dart';
 import 'package:doc_app/features/home/ui/widget/speciality_list/specializations_bloc_builder.dart';
@@ -14,6 +17,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: AppDrawer(),
       body: SafeArea(
         child: Container(
           width: double.infinity,

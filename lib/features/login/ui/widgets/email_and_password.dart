@@ -1,4 +1,5 @@
 import 'package:doc_app/features/login/logic/cubit/login_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +56,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
         children: [
           AppTextFormField(
             controller: context.read<LoginCubit>().emailController,
-            hintText: 'Email',
+            hintText: context.tr("email"),
             validator: (value) {
               if (value == null ||
                   value.isEmpty ||
@@ -68,7 +69,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
           verticalSpace(18.h),
           AppTextFormField(
             controller: context.read<LoginCubit>().passwordController,
-            hintText: 'Password',
+            hintText: context.tr("password"),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter a valid password';

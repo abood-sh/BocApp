@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart' as dio;
+import 'package:doc_app/features/stripe_pay/data/model/create_customer_reqest_model.dart';
+import 'package:doc_app/features/stripe_pay/data/model/create_customer_response_model.dart';
 import 'package:doc_app/features/stripe_pay/data/model/ephemeral_key_response_model.dart';
 import 'package:doc_app/features/stripe_pay/data/model/stripe_request_model.dart';
 import 'package:doc_app/features/stripe_pay/data/model/stripe_response_model.dart';
@@ -22,5 +24,10 @@ abstract class StripeApiService {
   })
   Future<EphemeralKeyResponseModel> createEphemeralKey(
     @Field('customer') String customerId,
+  );
+
+  @POST('customers')
+  Future<CreateCustomerResponseModel> createCustomer(
+    @Body() CreateCustomerRequestModel createCustomerRequestModel,
   );
 }

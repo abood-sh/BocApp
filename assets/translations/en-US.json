@@ -1,0 +1,19 @@
+{
+    "login": "Login",
+    "sign Up": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "forgot_password": "Forgot Password?",
+    "reset_Password": "Reset Password",
+    "Confirm_password": "Confirm Password",
+    "name": "Name",
+    "phone_number": "Phone Number",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "home": "Home",
+    "welcome": "Welcome Back",
+    "language": "Language"
+}

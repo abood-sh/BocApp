@@ -75,8 +75,8 @@ class DoctorSpecialityListViewItem extends StatelessWidget {
           Text(
             specializationsData?.name ?? "Specializations",
             style: itemIndex == selectedIndex
-                ? TextStyles.font14DarkBlueMedium
-                : TextStyles.font12DarkBlueRegular,
+                ? TextStyles.font14DarkBlueMedium(context)
+                : TextStyles.font12DarkBlueRegular(context),
           ),
         ],
       ),

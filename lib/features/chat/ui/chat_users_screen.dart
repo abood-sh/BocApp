@@ -22,7 +22,9 @@ class _ChatScreenState extends State<ChatUsersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Chat', style: TextStyles.font24BlackBold)),
+      appBar: AppBar(
+        title: Text('Chat', style: TextStyles.font24BlackBold(context)),
+      ),
       body: SafeArea(
         child: BlocBuilder<UserCubit, UsersState>(
           builder: (context, state) {

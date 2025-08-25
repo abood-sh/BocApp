@@ -81,14 +81,17 @@ class SignupBlocListener extends StatelessWidget {
         icon: const Icon(Icons.error, color: Colors.red, size: 32),
         content: Text(
           apiErrorModel.getAllErrorsMessage(),
-          style: TextStyles.font15DarkBlueMedium,
+          style: TextStyles.font15DarkBlueMedium(context),
         ),
         actions: [
           TextButton(
             onPressed: () {
               context.pop();
             },
-            child: Text('Got it', style: TextStyles.font14BlueSemiBold),
+            child: Text(
+              'Got it',
+              style: TextStyles.font14BlueSemiBold(context),
+            ),
           ),
         ],
       ),

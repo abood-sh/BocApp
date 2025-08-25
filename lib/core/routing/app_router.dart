@@ -1,6 +1,11 @@
+import 'package:doc_app/features/chat/ui/chat_screen.dart';
+import 'package:doc_app/features/dark/cubit/theme_cubit_cubit.dart';
 import 'package:doc_app/features/chat/logic/cubit/user_cubit.dart';
 import 'package:doc_app/features/chat/ui/chat_users_screen.dart';
+import 'package:doc_app/features/dark/theme_switcher_screeen.dart';
 import 'package:doc_app/features/home/logic/home_cubit.dart';
+import 'package:doc_app/features/local/cubit/locale_cubit_cubit.dart';
+import 'package:doc_app/features/local/local_screen.dart';
 import 'package:doc_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doc_app/features/onboarding/onboarding_screen.dart';
 import 'package:doc_app/features/sign_up/logic/cubit/signup_cubit.dart';
@@ -8,6 +13,7 @@ import 'package:doc_app/features/sign_up/ui/sign_up_screen.dart';
 import 'package:doc_app/core/routing/routers.dart';
 import 'package:doc_app/features/stripe_pay/logic/cubit/stripe_cubit.dart';
 import 'package:doc_app/features/stripe_pay/stripe_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -57,6 +63,27 @@ class AppRouter {
           builder: (context) => BlocProvider(
             create: (context) => UserCubit(getIt())..getUsersStream(),
             child: const ChatUsersScreen(),
+          ),
+        );
+      // case Routers.chatScreen2:
+      //   return MaterialPageRoute(
+      //     builder: (context) => BlocProvider(
+      //       create: (context) => UserCubit(getIt()),
+      //       child:  ChatScreen(userModel: userModel!),
+      //     ),
+      //   );
+      case Routers.localScreen:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (_) => LocaleCubit(context.locale),
+            child: LocalPage(),
+          ),
+        );
+      case Routers.darkScreen:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider.value(
+            value: BlocProvider.of<ThemeCubit>(context),
+            child: ThemeSwitcher(),
           ),
         );
 
