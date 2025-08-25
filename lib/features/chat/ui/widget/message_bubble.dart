@@ -75,7 +75,7 @@ class MessageBubble extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   child: Text(
                     messageModel.content,
-                    style: TextStyles.font14WhiteSemiBold,
+                    style: TextStyles.font14WhiteSemiBold(context),
                   ),
                 ),
           verticalSpace(3),
@@ -83,7 +83,7 @@ class MessageBubble extends StatelessWidget {
             // timeago.format(messageModel.sentTime.toLocal()),
             '${messageModel.sentTime.toLocal().toString().substring(0, 10)} '
             '${TimeOfDay.fromDateTime(messageModel.sentTime.toLocal()).format(context)}',
-            style: TextStyles.font8GrayRegular,
+            style: TextStyles.font8GrayRegular(context),
           ),
         ],
       ),

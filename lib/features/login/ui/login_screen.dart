@@ -1,4 +1,5 @@
 import 'package:doc_app/core/helpers/spacing.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,11 +30,14 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Welcome Back', style: TextStyles.font24BlueBold),
+                Text(
+                  context.tr("welcome"),
+                  style: TextStyles.font24BlueBold(context),
+                ),
                 verticalSpace(8.h),
                 Text(
                   r"We're excited to have you back, can't wait to see what you've been up to since you last logged in.",
-                  style: TextStyles.font14GrayRegular,
+                  style: TextStyles.font14GrayRegular(context),
                 ),
                 verticalSpace(36.h),
                 Column(
@@ -42,14 +46,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     Align(
                       alignment: AlignmentDirectional.centerEnd,
                       child: Text(
-                        'Forgot Password?',
-                        style: TextStyles.font13BlueRegular,
+                        context.tr("forgot_password"),
+                        style: TextStyles.font13BlueRegular(context),
                       ),
                     ),
                     verticalSpace(40.h),
                     AppTextButton(
-                      buttonText: "Login",
-                      textStyle: TextStyles.font16WhiteSemiBold,
+                      buttonText: context.tr("login"),
+                      textStyle: TextStyles.font16WhiteSemiBold(context),
                       onPressed: () {
                         validateThenLogin(context);
                       },

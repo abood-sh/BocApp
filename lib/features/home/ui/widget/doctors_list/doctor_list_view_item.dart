@@ -49,18 +49,18 @@ class DoctorsListViewItem extends StatelessWidget {
               children: [
                 Text(
                   doctorsMode?.name ?? 'Name',
-                  style: TextStyles.font18DarkBlueBold,
+                  style: TextStyles.font18DarkBlueBold(context),
                   overflow: TextOverflow.ellipsis,
                 ),
                 verticalSpace(5),
                 Text(
                   '${doctorsMode?.degree} | ${doctorsMode!.phone}',
-                  style: TextStyles.font12GrayMedium,
+                  style: TextStyles.font12GrayMedium(context),
                 ),
                 verticalSpace(5),
                 Text(
                   doctorsMode?.email ?? 'email@gmail.com',
-                  style: TextStyles.font12GrayMedium,
+                  style: TextStyles.font12GrayMedium(context),
                 ),
               ],
             ),

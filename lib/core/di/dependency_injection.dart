@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:doc_app/core/networking/stripe_api_service.dart';
-import 'package:doc_app/core/networking/stripe_dio_factory.dart';
+import 'package:doc_app/core/networking/stripe/stripe_api_service.dart';
+import 'package:doc_app/core/networking/stripe/stripe_dio_factory.dart';
+import 'package:doc_app/features/chat/data/repos/message_repo.dart';
 import 'package:doc_app/features/chat/data/repos/user_repo.dart';
 import 'package:doc_app/features/chat/logic/cubit/user_cubit.dart';
 import 'package:doc_app/features/home/data/apis/home_api_services.dart';
 import 'package:doc_app/features/home/data/repos/home_repo.dart';
+import 'package:doc_app/features/local/cubit/locale_cubit_cubit.dart';
 import 'package:doc_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doc_app/features/sign_up/data/repo/sign_up_repo.dart';
 import 'package:doc_app/features/sign_up/logic/cubit/signup_cubit.dart';
@@ -34,6 +36,7 @@ Future<void> setupGetIt() async {
 
   // Firebase Services
   getIt.registerLazySingleton<UserRepository>(() => UserRepository());
+  getIt.registerLazySingleton<MessageRepository>(() => MessageRepository());
   getIt.registerFactory<UserCubit>(() => UserCubit(getIt<UserRepository>()));
 
   // stripe services
@@ -46,4 +49,8 @@ Future<void> setupGetIt() async {
 
   getIt.registerLazySingleton(() => StripeRepository(getIt()));
   getIt.registerFactory<StripeCubit>(() => StripeCubit(getIt()));
+
+  // locale
+  final savedLocale = await LocaleCubit.getSavedLocale();
+  getIt.registerFactory<LocaleCubit>(() => LocaleCubit(savedLocale));
 }

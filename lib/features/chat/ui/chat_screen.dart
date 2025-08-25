@@ -22,11 +22,13 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   late final ChatCubit _chatCubit;
   @override
+  // In chat_screen.dart
+  @override
   void initState() {
     super.initState();
     _chatCubit = ChatCubit(
-      messageRepository: context.read<MessageRepository>(),
-      currentUserId: 'current_user_id', // Get from your auth system
+      messageRepository: RepositoryProvider.of<MessageRepository>(context),
+      currentUserId: 'MYLVeZvYVXPsnCo84lOJ', // Get from auth system
       receiverId: widget.userModel.uid,
     );
   }
@@ -50,13 +52,13 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: [
                   Text(
                     widget.userModel.name,
-                    style: TextStyles.font18DarkBlueBold,
+                    style: TextStyles.font18DarkBlueBold(context),
                   ),
                   Text(
                     widget.userModel.isOnline ? "Online" : "Offline",
                     style: widget.userModel.isOnline
-                        ? TextStyles.font14BlueSemiBold
-                        : TextStyles.font14GrayRegular,
+                        ? TextStyles.font14BlueSemiBold(context)
+                        : TextStyles.font14GrayRegular(context),
                   ),
                 ],
               ),

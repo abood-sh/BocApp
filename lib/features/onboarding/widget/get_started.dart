@@ -18,7 +18,7 @@ class GetStartedButton extends StatelessWidget {
         children: [
           Text(
             'Manage and schedule all of your medical appointments easily with Doc to get a new experience.',
-            style: TextStyles.font13GrayRegular,
+            style: TextStyles.font13GrayRegular(context),
             textAlign: TextAlign.center,
           ),
           verticalSpace(10.h),
@@ -36,7 +36,10 @@ class GetStartedButton extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               ),
             ),
-            child: Text("Get Started", style: TextStyles.font16WhiteMedium),
+            child: Text(
+              "Get Started",
+              style: TextStyles.font16WhiteMedium(context),
+            ),
           ),
         ],
       ),

@@ -22,21 +22,21 @@ mixin _$StripeState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(StripeResponseModel response) success,
-    required TResult Function(ApiErrorModel error) error,
+    required TResult Function(StripeErrorModel stripeErrorModel) error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(StripeResponseModel response)? success,
-    TResult? Function(ApiErrorModel error)? error,
+    TResult? Function(StripeErrorModel stripeErrorModel)? error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(StripeResponseModel response)? success,
-    TResult Function(ApiErrorModel error)? error,
+    TResult Function(StripeErrorModel stripeErrorModel)? error,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -131,7 +131,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(StripeResponseModel response) success,
-    required TResult Function(ApiErrorModel error) error,
+    required TResult Function(StripeErrorModel stripeErrorModel) error,
   }) {
     return initial();
   }
@@ -142,7 +142,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(StripeResponseModel response)? success,
-    TResult? Function(ApiErrorModel error)? error,
+    TResult? Function(StripeErrorModel stripeErrorModel)? error,
   }) {
     return initial?.call();
   }
@@ -153,7 +153,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(StripeResponseModel response)? success,
-    TResult Function(ApiErrorModel error)? error,
+    TResult Function(StripeErrorModel stripeErrorModel)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -250,7 +250,7 @@ class _$LoadingImpl implements Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(StripeResponseModel response) success,
-    required TResult Function(ApiErrorModel error) error,
+    required TResult Function(StripeErrorModel stripeErrorModel) error,
   }) {
     return loading();
   }
@@ -261,7 +261,7 @@ class _$LoadingImpl implements Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(StripeResponseModel response)? success,
-    TResult? Function(ApiErrorModel error)? error,
+    TResult? Function(StripeErrorModel stripeErrorModel)? error,
   }) {
     return loading?.call();
   }
@@ -272,7 +272,7 @@ class _$LoadingImpl implements Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(StripeResponseModel response)? success,
-    TResult Function(ApiErrorModel error)? error,
+    TResult Function(StripeErrorModel stripeErrorModel)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -397,7 +397,7 @@ class _$SuccessImpl implements Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(StripeResponseModel response) success,
-    required TResult Function(ApiErrorModel error) error,
+    required TResult Function(StripeErrorModel stripeErrorModel) error,
   }) {
     return success(response);
   }
@@ -408,7 +408,7 @@ class _$SuccessImpl implements Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(StripeResponseModel response)? success,
-    TResult? Function(ApiErrorModel error)? error,
+    TResult? Function(StripeErrorModel stripeErrorModel)? error,
   }) {
     return success?.call(response);
   }
@@ -419,7 +419,7 @@ class _$SuccessImpl implements Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(StripeResponseModel response)? success,
-    TResult Function(ApiErrorModel error)? error,
+    TResult Function(StripeErrorModel stripeErrorModel)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -485,7 +485,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
     $Res Function(_$ErrorImpl) then,
   ) = __$$ErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ApiErrorModel error});
+  $Res call({StripeErrorModel stripeErrorModel});
 }
 
 /// @nodoc
@@ -501,13 +501,13 @@ class __$$ErrorImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? error = null}) {
+  $Res call({Object? stripeErrorModel = null}) {
     return _then(
       _$ErrorImpl(
-        null == error
-            ? _value.error
-            : error // ignore: cast_nullable_to_non_nullable
-                  as ApiErrorModel,
+        null == stripeErrorModel
+            ? _value.stripeErrorModel
+            : stripeErrorModel // ignore: cast_nullable_to_non_nullable
+                  as StripeErrorModel,
       ),
     );
   }
@@ -516,14 +516,14 @@ class __$$ErrorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ErrorImpl implements Error {
-  const _$ErrorImpl(this.error);
+  const _$ErrorImpl(this.stripeErrorModel);
 
   @override
-  final ApiErrorModel error;
+  final StripeErrorModel stripeErrorModel;
 
   @override
   String toString() {
-    return 'StripeState.error(error: $error)';
+    return 'StripeState.error(stripeErrorModel: $stripeErrorModel)';
   }
 
   @override
@@ -531,11 +531,12 @@ class _$ErrorImpl implements Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorImpl &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.stripeErrorModel, stripeErrorModel) ||
+                other.stripeErrorModel == stripeErrorModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode => Object.hash(runtimeType, stripeErrorModel);
 
   /// Create a copy of StripeState
   /// with the given fields replaced by the non-null parameter values.
@@ -551,9 +552,9 @@ class _$ErrorImpl implements Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(StripeResponseModel response) success,
-    required TResult Function(ApiErrorModel error) error,
+    required TResult Function(StripeErrorModel stripeErrorModel) error,
   }) {
-    return error(this.error);
+    return error(stripeErrorModel);
   }
 
   @override
@@ -562,9 +563,9 @@ class _$ErrorImpl implements Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(StripeResponseModel response)? success,
-    TResult? Function(ApiErrorModel error)? error,
+    TResult? Function(StripeErrorModel stripeErrorModel)? error,
   }) {
-    return error?.call(this.error);
+    return error?.call(stripeErrorModel);
   }
 
   @override
@@ -573,11 +574,11 @@ class _$ErrorImpl implements Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(StripeResponseModel response)? success,
-    TResult Function(ApiErrorModel error)? error,
+    TResult Function(StripeErrorModel stripeErrorModel)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(this.error);
+      return error(stripeErrorModel);
     }
     return orElse();
   }
@@ -621,9 +622,9 @@ class _$ErrorImpl implements Error {
 }
 
 abstract class Error implements StripeState {
-  const factory Error(final ApiErrorModel error) = _$ErrorImpl;
+  const factory Error(final StripeErrorModel stripeErrorModel) = _$ErrorImpl;
 
-  ApiErrorModel get error;
+  StripeErrorModel get stripeErrorModel;
 
   /// Create a copy of StripeState
   /// with the given fields replaced by the non-null parameter values.
