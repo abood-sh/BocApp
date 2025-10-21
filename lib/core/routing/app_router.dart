@@ -1,3 +1,4 @@
+import 'package:doc_app/core/widget/app_drawer.dart';
 import 'package:doc_app/features/chat/ui/chat_screen.dart';
 import 'package:doc_app/features/dark/cubit/theme_cubit_cubit.dart';
 import 'package:doc_app/features/chat/logic/cubit/user_cubit.dart';

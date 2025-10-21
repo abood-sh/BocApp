@@ -1,137 +1,136 @@
-import 'package:doc_app/core/helpers/spacing.dart';
-import 'package:doc_app/core/theming/styles.dart';
-import 'package:doc_app/features/chat/data/model/message_model.dart';
-import 'package:doc_app/features/chat/data/model/user_model.dart';
-import 'package:doc_app/features/chat/data/repos/message_repo.dart';
+// lib/features/chat/ui/screens/chat_screen.dart
 import 'package:doc_app/features/chat/logic/cubit/chat_cubit.dart';
 import 'package:doc_app/features/chat/logic/cubit/chat_state.dart';
-import 'package:doc_app/features/chat/ui/widget/chat_text_field.dart';
 import 'package:doc_app/features/chat/ui/widget/message_bubble.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key, required this.userModel});
-  final UserModel userModel;
+  final String receiverId;
+  final String receiverName;
+
+  const ChatScreen({
+    Key? key,
+    required this.receiverId,
+    required this.receiverName,
+  }) : super(key: key);
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  late final ChatCubit _chatCubit;
-  @override
-  // In chat_screen.dart
+  final TextEditingController _messageController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
-    _chatCubit = ChatCubit(
-      messageRepository: RepositoryProvider.of<MessageRepository>(context),
-      currentUserId: 'MYLVeZvYVXPsnCo84lOJ', // Get from auth system
-      receiverId: widget.userModel.uid,
-    );
+    context.read<ChatCubit>().startChat(widget.receiverId);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => _chatCubit,
-      child: Scaffold(
-        appBar: AppBar(
-          // backgroundColor: ColorsManager.white,
-          elevation: 0,
-          title: Row(
+    return Scaffold(
+      appBar: AppBar(title: Text(widget.receiverName)),
+      body: BlocBuilder<ChatCubit, ChatState>(
+        builder: (context, state) {
+          return Column(
             children: [
-              CircleAvatar(
-                backgroundImage: NetworkImage(widget.userModel.profileImageUrl),
-                radius: 20.r,
-              ),
-              horizontalSpace(10),
-              Column(
-                children: [
-                  Text(
-                    widget.userModel.name,
-                    style: TextStyles.font18DarkBlueBold(context),
-                  ),
-                  Text(
-                    widget.userModel.isOnline ? "Online" : "Offline",
-                    style: widget.userModel.isOnline
-                        ? TextStyles.font14BlueSemiBold(context)
-                        : TextStyles.font14GrayRegular(context),
-                  ),
-                ],
-              ),
+              Expanded(child: _buildMessageList(state)),
+              _buildMessageInput(state),
             ],
-          ),
-        ),
-        body: Padding(
-          padding: EdgeInsets.all(16.0.h),
-          child: Column(
-            children: [
-              Expanded(
-                child: BlocBuilder<ChatCubit, ChatState>(
-                  builder: (context, state) {
-                    return StreamBuilder<List<MessageModel>>(
-                      stream: context.read<ChatCubit>().messagesStream,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) {
-                          return Center(
-                            child: Text('Error: ${snapshot.error}'),
-                          );
-                        }
-
-                        if (!snapshot.hasData) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-
-                        final messages = snapshot.data!;
-                        return ListView.builder(
-                          reverse: true,
-                          itemCount: messages.length,
-                          itemBuilder: (context, index) {
-                            final message = messages[index];
-                            final isMe =
-                                message.senderId == _chatCubit.currentUserId;
-                            final isImage =
-                                message.messageType == MessageType.image;
-
-                            return MessageBubble(
-                              messageModel: message,
-                              isMe: isMe,
-                              isImage: isImage,
-                            );
-                          },
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
-              ChatTextField(
-                receiverID: widget.userModel.uid,
-                onSendImage: () {
-                  _pickAndSendImage();
-                },
-                onSendText: (text) {
-                  _chatCubit.sendTextMessage(text);
-                },
-              ),
-            ],
-          ),
-        ),
+          );
+        },
       ),
     );
   }
 
-  Future<void> _pickAndSendImage() async {
-    // Implement image picking using image_picker
-    // final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    // if (image != null) {
-    //   final imageUrl = await uploadImageToStorage(image);
-    //   _chatCubit.sendImageMessage(imageUrl);
-    // }
+  Widget _buildMessageList(ChatState state) {
+    if (state is ChatLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (state is ChatError) {
+      return Center(child: Text(state.message));
+    }
+
+    if (state is ChatLoaded) {
+      return ListView.builder(
+        controller: _scrollController,
+        reverse: true,
+        itemCount: state.messages.length,
+        itemBuilder: (context, index) {
+          final message = state.messages[index];
+          final currentUserId = FirebaseAuth.instance.currentUser!.uid;
+          final isMe = message.senderId == currentUserId;
+          final isImage =
+              message.content.startsWith('http') &&
+              (message.content.endsWith('.jpg') ||
+                  message.content.endsWith('.jpeg') ||
+                  message.content.endsWith('.png'));
+
+          return MessageBubble(message: message, isMe: isMe, isImage: isImage);
+        },
+      );
+    }
+
+    return const SizedBox();
+  }
+
+  Widget _buildMessageInput(ChatState state) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: _messageController,
+              decoration: const InputDecoration(
+                hintText: 'Type a message...',
+                border: OutlineInputBorder(),
+              ),
+              enabled: state is! ChatLoading,
+            ),
+          ),
+          const SizedBox(width: 8),
+          _buildSendButton(state),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSendButton(ChatState state) {
+    final isSending = state is ChatLoaded && state.isSending;
+
+    return IconButton(
+      icon: isSending
+          ? const SizedBox(
+              width: 24,
+              height: 24,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            )
+          : const Icon(Icons.send),
+      onPressed: isSending ? null : () => _sendMessage(),
+    );
+  }
+
+  void _sendMessage() {
+    final message = _messageController.text.trim();
+    if (message.isNotEmpty) {
+      context.read<ChatCubit>().sendMessage(
+        receiverId: widget.receiverId,
+        content: message,
+      );
+      _messageController.clear();
+    }
+  }
+
+  @override
+  void dispose() {
+    _messageController.dispose();
+    _scrollController.dispose();
+    super.dispose();
   }
 }

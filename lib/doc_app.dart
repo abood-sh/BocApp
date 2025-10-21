@@ -1,12 +1,15 @@
+import 'package:doc_app/core/helpers/connectivity_stream.dart';
 import 'package:doc_app/core/helpers/constants.dart';
 import 'package:doc_app/core/routing/app_router.dart';
 import 'package:doc_app/core/routing/routers.dart';
 import 'package:doc_app/features/dark/cubit/theme_cubit_cubit.dart';
 import 'package:doc_app/core/theming/theme.dart';
+import 'package:doc_app/features/no_internet/no_internet_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 class DocDoc extends StatelessWidget {
   final AppRouter appRouter;
@@ -35,12 +38,13 @@ class DocDoc extends StatelessWidget {
                   ? Routers.homeScreen
                   : Routers.onboardingScreen,
               onGenerateRoute: appRouter.generateRoute,
-              // builder: (context, widget) => MediaQuery(
-              //   data: MediaQuery.of(
-              //     context,
-              //   ).copyWith(textScaler: TextScaler.linear(1.0)),
-              //   child: widget!,
-              // ),
+              builder: (context, appChild) {
+                return StreamBuilder<InternetStatus>(
+                  stream: connectivityStream(),
+                  builder: (context, snapshot) =>
+                      connectivityGateBuilder(context, appChild),
+                );
+              },
             );
           },
         );

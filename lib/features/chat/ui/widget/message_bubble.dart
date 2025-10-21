@@ -1,91 +1,78 @@
-import 'package:doc_app/core/helpers/spacing.dart';
-import 'package:doc_app/core/theming/colors.dart';
-import 'package:doc_app/core/theming/styles.dart';
 import 'package:doc_app/features/chat/data/model/message_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 class MessageBubble extends StatelessWidget {
-  const MessageBubble({
-    super.key,
-    required this.messageModel,
-    required this.isMe,
-    required this.isImage,
-  });
-  final MessageModel messageModel;
+  final MessageModel message;
   final bool isMe;
   final bool isImage;
 
+  MessageBubble({
+    Key? key,
+    required this.message,
+    required this.isMe,
+    required this.isImage,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: isMe ? Alignment.topLeft : Alignment.topRight,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: isMe
-            ? CrossAxisAlignment.start
-            : CrossAxisAlignment.end,
-        children: [
-          isImage
-              ? Container(
-                  constraints: BoxConstraints(
-                    maxWidth: 250.w,
-                    maxHeight: 400.h,
-                    minHeight: 200.h,
-                    minWidth: 200.w,
-                  ),
-                  decoration: BoxDecoration(
-                    color: isMe ? ColorsManager.mainBlue : ColorsManager.gray,
-                    borderRadius: isMe
-                        ? const BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30),
-                            bottomRight: Radius.circular(30),
-                          )
-                        : const BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30),
-                            bottomLeft: Radius.circular(30),
-                          ),
-                    image: DecorationImage(
-                      image: NetworkImage(messageModel.content),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      child: Align(
+        alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
+        child: Container(
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width * 0.75,
+          ),
+          decoration: BoxDecoration(
+            color: isMe ? Theme.of(context).primaryColor : Colors.grey[300],
+            borderRadius: BorderRadius.circular(12),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: Column(
+            crossAxisAlignment: isMe
+                ? CrossAxisAlignment.end
+                : CrossAxisAlignment.start,
+            children: [
+              isImage
+                  ? Image.network(
+                      message.content,
+                      width: 200,
+                      height: 200,
                       fit: BoxFit.cover,
+                    )
+                  : Text(
+                      message.content,
+                      style: TextStyle(
+                        color: isMe ? Colors.white : Colors.black,
+                      ),
+                    ),
+              const SizedBox(height: 4),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    DateFormat('HH:mm').format(
+                      message.timestamp,
+                    ), // Changed from sentTime to timestamp
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isMe ? Colors.white70 : Colors.black54,
                     ),
                   ),
-                )
-              : Container(
-                  decoration: BoxDecoration(
-                    color: isMe ? ColorsManager.mainBlue : ColorsManager.gray,
-                    borderRadius: isMe
-                        ? const BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30),
-                            bottomRight: Radius.circular(30),
-                          )
-                        : const BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30),
-                            bottomLeft: Radius.circular(30),
-                          ),
-                  ),
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 5,
-                  ),
-                  padding: const EdgeInsets.all(10),
-                  child: Text(
-                    messageModel.content,
-                    style: TextStyles.font14WhiteSemiBold(context),
-                  ),
-                ),
-          verticalSpace(3),
-          Text(
-            // timeago.format(messageModel.sentTime.toLocal()),
-            '${messageModel.sentTime.toLocal().toString().substring(0, 10)} '
-            '${TimeOfDay.fromDateTime(messageModel.sentTime.toLocal()).format(context)}',
-            style: TextStyles.font8GrayRegular(context),
+                  if (isMe) ...[
+                    const SizedBox(width: 4),
+                    Icon(
+                      message.isRead ? Icons.done_all : Icons.done,
+                      size: 16,
+                      color: Colors.white70,
+                    ),
+                  ],
+                ],
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

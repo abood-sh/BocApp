@@ -1,76 +1,66 @@
 import 'package:doc_app/core/di/dependency_injection.dart';
-import 'package:doc_app/core/theming/colors.dart';
-import 'package:doc_app/core/theming/styles.dart';
 import 'package:doc_app/features/chat/data/model/user_model.dart';
-import 'package:doc_app/features/chat/data/repos/message_repo.dart';
-import 'package:doc_app/features/chat/logic/cubit/user_cubit.dart';
+import 'package:doc_app/features/chat/logic/cubit/chat_cubit.dart';
 import 'package:doc_app/features/chat/ui/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 class UserListViewItem extends StatelessWidget {
-  final UserModel? userModel;
-  final int itemIndex;
-  const UserListViewItem({
-    super.key,
-    required this.userModel,
-    required this.itemIndex,
-  });
+  final UserModel user;
+
+  const UserListViewItem({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => RepositoryProvider(
-                  create: (context) => getIt<MessageRepository>(),
-                  child: BlocProvider(
-                    create: (context) => UserCubit(getIt()),
-                    child: ChatScreen(userModel: userModel!),
-                  ),
-                ),
-              ),
-            );
-          },
-          child: ListTile(
-            key: ValueKey(userModel?.uid),
-            contentPadding: EdgeInsets.zero,
-            leading: Stack(
-              alignment: Alignment.bottomRight,
-              children: [
-                CircleAvatar(
-                  radius: 25,
-                  backgroundImage: NetworkImage(userModel!.profileImageUrl),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 11.h),
-                  child: CircleAvatar(
-                    backgroundColor: userModel!.isOnline
-                        ? Colors.green
-                        : Colors.grey, // Online status indicator
-                    radius: 4,
-                  ),
-                ),
-              ],
-            ),
-            title: Text(
-              userModel!.name,
-              style: TextStyles.font18DarkBlueBold(context),
-            ),
-            subtitle: Text(
-              'Last Activity ${timeago.format(userModel!.lastActivity)}',
-              style: TextStyles.font14GrayRegular(context),
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BlocProvider(
+              create: (context) => getIt<ChatCubit>(),
+              child: ChatScreen(receiverId: user.uid, receiverName: user.name),
             ),
           ),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 24,
+              backgroundImage: user.profileImageUrl.isNotEmpty
+                  ? NetworkImage(user.profileImageUrl)
+                  : const AssetImage('assets/images/avatar.png')
+                        as ImageProvider,
+            ),
+            const SizedBox(width: 16.0),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    user.name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    user.isOnline ? 'Online' : 'Offline',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: user.isOnline ? Colors.green : Colors.grey[600],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
-        const Divider(color: ColorsManager.lightGray, thickness: 1, height: 0),
-      ],
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:doc_app/core/networking/stripe/stripe_api_service.dart';
 import 'package:doc_app/core/networking/stripe/stripe_dio_factory.dart';
 import 'package:doc_app/features/chat/data/repos/message_repo.dart';
 import 'package:doc_app/features/chat/data/repos/user_repo.dart';
+import 'package:doc_app/features/chat/logic/cubit/chat_cubit.dart';
 import 'package:doc_app/features/chat/logic/cubit/user_cubit.dart';
 import 'package:doc_app/features/home/data/apis/home_api_services.dart';
 import 'package:doc_app/features/home/data/repos/home_repo.dart';
@@ -28,7 +29,7 @@ Future<void> setupGetIt() async {
   // signup
   getIt.registerLazySingleton<SignupRepo>(() => SignupRepo(getIt()));
   getIt.registerFactory<SignupCubit>(() => SignupCubit(getIt()));
-  // home
+  // home0
   getIt.registerLazySingleton<HomeApiServices>(() => HomeApiServices(dio));
   getIt.registerLazySingleton<HomeRepo>(
     () => HomeRepo(getIt()..getSpecialization()),
@@ -36,8 +37,9 @@ Future<void> setupGetIt() async {
 
   // Firebase Services
   getIt.registerLazySingleton<UserRepository>(() => UserRepository());
-  getIt.registerLazySingleton<MessageRepository>(() => MessageRepository());
+  getIt.registerLazySingleton<ChatRepository>(() => ChatRepository());
   getIt.registerFactory<UserCubit>(() => UserCubit(getIt<UserRepository>()));
+  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt<ChatRepository>()));
 
   // stripe services
   // Add to your existing DI setup
