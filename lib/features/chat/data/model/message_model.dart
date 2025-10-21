@@ -8,55 +8,59 @@ enum MessageType {
 }
 
 class MessageModel {
+  final String id;
   final String senderId;
   final String receiverId;
-    final String chatId; // Add this
-
   final String content;
-  final DateTime sentTime;
-  final MessageType messageType;
-    final bool isSeen; // Add this
+  final DateTime timestamp;
+  final bool isRead;
 
+  const MessageModel({
+    required this.id,
+    required this.senderId,
+    required this.receiverId,
+    required this.content,
+    required this.timestamp,
+    this.isRead = false,
+  });
 
-  MessageModel(
-      {required this.senderId,
-      required this.receiverId,
-          required this.chatId, // Add this
-
-      required this.content,
-      required this.sentTime,
-      required this.messageType,
-          this.isSeen = false, // Add this
-});
-
-  factory MessageModel.fromFirestore(
-    DocumentSnapshot<Map<String, dynamic>> snapshot,
-    SnapshotOptions? options,
-  ) {
-    final data = snapshot.data()!;
+  factory MessageModel.fromMap(Map<String, dynamic> map) {
     return MessageModel(
-      senderId: data['senderId'],
-      receiverId: data['receiverId'],
-      chatId: data['chatId'], // Extract chatId
-      content: data['content'],
-      sentTime: (data['sentTime'] as Timestamp).toDate(),
-      messageType: data['messageType'],
-      isSeen: data['isSeen'] ?? false, // Extract isSeen with default value
+      id: map['id'] ?? '',
+      senderId: map['senderId'] ?? '',
+      receiverId: map['receiverId'] ?? '',
+      content: map['content'] ?? '',
+      timestamp: (map['timestamp'] as Timestamp).toDate(),
+      isRead: map['isRead'] ?? false,
     );
   }
 
-  Map<String, dynamic> toFirestore() {
+  Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'senderId': senderId,
       'receiverId': receiverId,
       'content': content,
-      'sentTime': Timestamp.fromDate(sentTime),
-      'messageType': messageType,
+      'timestamp': Timestamp.fromDate(timestamp),
+      'isRead': isRead,
     };
   }
 
-  static String generateChatId(String user1, String user2) {
-    final ids = [user1, user2]..sort();
-    return '${ids[0]}_${ids[1]}';
+  MessageModel copyWith({
+    String? id,
+    String? senderId,
+    String? receiverId,
+    String? content,
+    DateTime? timestamp,
+    bool? isRead,
+  }) {
+    return MessageModel(
+      id: id ?? this.id,
+      senderId: senderId ?? this.senderId,
+      receiverId: receiverId ?? this.receiverId,
+      content: content ?? this.content,
+      timestamp: timestamp ?? this.timestamp,
+      isRead: isRead ?? this.isRead,
+    );
   }
 }

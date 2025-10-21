@@ -32,6 +32,11 @@ class SignupBlocListener extends StatelessWidget {
           signupSuccess: (signupResponse) {
             context.pop();
             showSuccessDialog(context);
+            //
+            //     SnackBarHelper.showSuccessSnackBar(
+            //   context: context,
+            //   message: 'Account created successfully!',
+            // );
           },
           signupError: (apiErrorModel) {
             setupErrorState(context, apiErrorModel);

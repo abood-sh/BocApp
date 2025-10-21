@@ -19,14 +19,14 @@ class LoginBlocListener extends StatelessWidget {
       listener: (context, state) {
         state.whenOrNull(
           loading: () {
-            showDialog(
-              context: context,
-              builder: (context) =>
-                  const Center(child: CircularProgressIndicator()),
-            );
+            // showDialog(
+            //   context: context,
+            //   builder: (context) =>
+            //       const Center(child: CircularProgressIndicator()),
+            // );
           },
           success: (loginResponse) {
-            context.pop();
+            //context.pop();
             context.pushReplacementNamed(Routers.homeScreen);
           },
           error: (apiErrorModel) {

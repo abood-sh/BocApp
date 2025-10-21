@@ -1,4 +1,5 @@
 import 'package:doc_app/core/helpers/spacing.dart';
+import 'package:doc_app/core/theming/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/theming/styles.dart';
 import '../../../core/widget/app_text_button.dart';
 import '../logic/cubit/login_cubit.dart';
+import '../logic/cubit/login_state.dart';
 import 'widgets/already_have_account_text.dart';
 import 'widgets/email_and_password.dart';
 import 'widgets/login_bloc_listener.dart';
@@ -51,11 +53,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     verticalSpace(40.h),
-                    AppTextButton(
-                      buttonText: context.tr("login"),
-                      textStyle: TextStyles.font16WhiteSemiBold(context),
-                      onPressed: () {
-                        validateThenLogin(context);
+                    BlocBuilder<LoginCubit, LoginState>(
+                      builder: (context, state) {
+                        if (state is Loading) {
+                          return AppTextButton(
+                            buttonText: "",
+                            backgroundColor: ColorsManager.lighterGray,
+                            textStyle: TextStyles.font16WhiteSemiBold(context),
+                            onPressed: () {},
+                            isLoading: true,
+                          );
+                        }
+                        return AppTextButton(
+                          buttonText: context.tr("login"),
+                          textStyle: TextStyles.font16WhiteSemiBold(context),
+                          onPressed: () {
+                            validateThenLogin(context);
+                          },
+                        );
                       },
                     ),
                     verticalSpace(16),

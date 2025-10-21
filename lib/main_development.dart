@@ -1,12 +1,13 @@
 import 'package:doc_app/core/di/dependency_injection.dart';
+import 'package:doc_app/core/firebase/firebase_config.dart';
 import 'package:doc_app/core/helpers/constants.dart';
 import 'package:doc_app/core/helpers/extension.dart';
 import 'package:doc_app/core/helpers/shared_pref_helper.dart';
 import 'package:doc_app/core/routing/app_router.dart';
+import 'package:doc_app/core/services/connectivity_service.dart';
 import 'package:doc_app/core/services/notifications.dart';
 import 'package:doc_app/features/dark/cubit/theme_cubit_cubit.dart';
 import 'package:doc_app/doc_app.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -14,8 +15,9 @@ import 'package:easy_localization/easy_localization.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  
+  // await Firebase.initializeApp();
+  await FirebaseConfig.instance.initializeFirebase();
+
   await NotificationService().initialize();
   await EasyLocalization.ensureInitialized();
   final initialTheme = await ThemeCubit.getInitialMode();
@@ -26,6 +28,7 @@ Future<void> main() async {
   // await Stripe.instance.applySettings();
   await setupGetIt();
   // await ScreenUtil.ensureScreenSize();
+
   await checkIfLoggedInUser();
 
   runApp(

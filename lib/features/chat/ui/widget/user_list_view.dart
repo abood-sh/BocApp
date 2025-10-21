@@ -18,10 +18,7 @@ class UserListView extends StatelessWidget {
       separatorBuilder: (context, index) => verticalSpace(10),
       itemCount: userModelData.length,
       itemBuilder: (context, index) {
-        return UserListViewItem(
-          userModel: userModelData[index],
-          itemIndex: index,
-        );
+        return UserListViewItem(user: userModelData[index]);
       },
     );
   }
